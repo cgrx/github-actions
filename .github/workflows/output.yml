@@ -1,0 +1,12 @@
+name: Output Context
+on:
+  push:
+    branches:
+      - events
+jobs:
+  context:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Github Context
+        run: echo "${{ toJSON(github) }}"
+
