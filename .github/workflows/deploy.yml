@@ -1,25 +1,11 @@
-name: Test And Deploy
+name: Lint, Test And Deploy
 on:
   workflow_dispatch:
   push:
     branches:
       - events
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Get Code
-        uses: actions/checkout@v3
-      - name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-      - name: Install dependencies
-        run: npm ci
-      - name: Run Tests
-        run: npm test
   deploy:
-    needs: test
     runs-on: ubuntu-latest
     steps:
       - name: Get Code
@@ -30,6 +16,10 @@ jobs:
           node-version: 18
       - name: Install dependencies
         run: npm ci
+      - name: Run Lint
+        run: npm run lint
+      - name: Run Tests
+        run: npm run test
       - name: Build Project
         run: npm run build
       - name: Deploy
