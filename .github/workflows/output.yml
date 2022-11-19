@@ -2,7 +2,7 @@ name: Output Context
 on:
   push:
     branches:
-      - events
+      - main
 jobs:
   context:
     runs-on: ubuntu-latest
